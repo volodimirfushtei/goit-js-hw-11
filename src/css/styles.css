@@ -5,19 +5,68 @@
   |============================
 */
 @import url('./reset.css');
-
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+  --font-family: 'Montserrat', sans-serif;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  padding-top: 36px;
+}
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+input {
+  width: 272px;
+  height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 8px;
+  background: #fff;
+  border-radius: 4px;
+  width: 272px;
+  height: 40px;
   font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #808080;
+  border: 1px solid #808080;
+}
+button {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 91px;
+  height: 40px;
+  background: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+}
+input:hover,
+input:focus {
+  border: 1px solid #000;
+}
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+input:active {
+  border: 1px solid #4e75ff;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+button:hover {
+  background: #6c8cff;
 }
