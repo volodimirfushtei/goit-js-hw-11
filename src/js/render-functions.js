@@ -11,9 +11,10 @@ export function renderImages(images) {
     if (images.length > 0) {
       const imageCards = images.map(
         image => `
-     <li class="gallery-link"><a class="card-link" href="${image.largeImageURL}" data-lightbox="gallery" data-title="${image.tags}">
+        <li class="gallery-link"><a class="card-link" href="${image.largeImageURL}" data-lightbox="gallery" data-title="${image.tags}">
         <div class="card">
-          <img class="image" src="${image.webformatURL}" alt="${image.tags}">
+          <img class="image" src="${image.webformatURL}" alt="${image.tags}" onload="hideLoader(this)" onerror="hideLoader(this)">
+    
           <div class="card-points">
             <div class="card-text"><p>Likes: ${image.likes}</p></div>
             <div class="card-text"><p>Views: ${image.views}</p></div>
@@ -26,12 +27,12 @@ export function renderImages(images) {
     `
       );
       imageContainer.innerHTML = imageCards.join('');
-      loader.style.display = 'none';
+
       const lightbox = new SimpleLightbox('[data-lightbox="gallery"]');
       lightbox.refresh();
     } else {
       imageContainer.innerHTML = '';
     }
     loader.style.display = 'none';
-  }, 3000);
+  }, 2000);
 }

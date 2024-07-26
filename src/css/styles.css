@@ -154,3 +154,21 @@ button:hover {
   flex-direction: column;
   text-align: center;
 }
+iziToast-custom .iziToast-icon {
+  display: none;
+}
+.iziToast-custom .iziToast-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.iziToast-custom .custom-icon {
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  right: 10px;
+}

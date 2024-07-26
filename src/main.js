@@ -1,9 +1,31 @@
 'use strict';
+import iconErr2 from './img/bi_x-octagon.svg';
+import iconErr1 from './img/closebi_x-lg.svg';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { fetchImages } from './js/pixabay-api.js';
 import { renderImages } from './js/render-functions.js';
+
+function showToastWithIconAtEnd(message, iconUrl, timeout = 3000) {
+  iziToast.show({
+    position: 'topRight',
+    message: message,
+    backgroundColor: '#EF4040',
+    messageColor: `#fff`,
+    messageSize: '16',
+    maxWidth: 432,
+    iconUrl: `${iconErr2}`,
+    timeout: timeout,
+    class: 'iziToast-custom',
+    onOpening: function (instance, toast) {
+      const iconElement = document.createElement('div');
+      iconElement.className = 'custom-icon';
+      iconElement.style.backgroundImage = `url(${iconUrl})`; // Встановлюємо URL для іконки
+      toast.querySelector('.iziToast-message').appendChild(iconElement); // Додаємо іконку в кінець повідомлення
+    },
+  });
+}
 
 function handleSearch(event) {
   event.preventDefault();
@@ -12,19 +34,23 @@ function handleSearch(event) {
   if (query !== '') {
     fetchImages(query)
       .then(data => {
-        if (data && data.hits) {
+        if (data && data.hits && data.hits.length > 0) {
           renderImages(data.hits);
         } else {
-          console.log('No images found');
+          showToastWithIconAtEnd(
+            'Sorry, there are no images matching your search query. Please try again!',
+            iconErr1,
+            3000
+          );
         }
       })
       .catch(error => console.error('Error searching images:', error));
   } else {
-    iziToast.error({
-      position: 'topRight',
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-    });
+    showToastWithIconAtEnd(
+      'Sorry, there are no images matching your search query. Please try again!',
+      iconErr1,
+      3000
+    );
   }
   formElement.reset();
 }
