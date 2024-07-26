@@ -1,22 +1,14 @@
 'use strict';
-// main.js
-// Описаний у документації
 import iziToast from 'izitoast';
-// Додатковий імпорт стилів
 import 'izitoast/dist/css/iziToast.min.css';
-// Описаний у документації
-import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { fetchImages } from './js/pixabay-api.js';
 import { renderImages } from './js/render-functions.js';
 
-// Функція для обробки події пошуку
 function handleSearch(event) {
   event.preventDefault();
-  const query = document.getElementById('search-input').value.trim();
-
+  const formElement = document.getElementById('search-form');
+  const query = document.querySelector('#search-input').value.trim();
   if (query !== '') {
     fetchImages(query)
       .then(data => {
@@ -28,14 +20,11 @@ function handleSearch(event) {
       })
       .catch(error => console.error('Error searching images:', error));
   } else {
-    console.log('Empty query');
+    console.log(
+      'Sorry, there are no images matching your search query. Please try again!'
+    );
   }
+  formElement.reset();
 }
-
-// Додавання обробника події на кнопку пошуку
-const searchForm = document.getElementById('search-form');
+const searchForm = document.querySelector('#search-form');
 searchForm.addEventListener('submit', handleSearch);
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox', function () {
-  // Do something…
-});

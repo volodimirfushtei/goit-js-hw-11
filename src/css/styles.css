@@ -9,16 +9,13 @@
   --font-family: 'Montserrat', sans-serif;
 }
 
-div {
-  display: flex;
-  justify-content: center;
-  padding-top: 36px;
-}
 form {
   display: flex;
   flex-direction: row;
   gap: 8px;
   align-items: center;
+  justify-content: center;
+  margin-top: 48px;
 }
 input {
   width: 272px;
@@ -32,6 +29,7 @@ input {
   border-radius: 4px;
   width: 272px;
   height: 40px;
+  padding-left: 8px;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -69,4 +67,89 @@ input:active {
 
 button:hover {
   background: #6c8cff;
+}
+/* --------------create loader------------------ */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  animation: rotate 1s linear infinite;
+}
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #e80505;
+  animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+/* ---------------------------------------------- */
+
+.image {
+  height: 200px;
+  width: 100%;
+}
+/* Основний контейнер галереї */
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  margin-top: 48px;
+}
+.gallery-link {
+  display: block;
+}
+.card {
+  border: 1px solid #808080;
+  width: 360px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.card-points {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  height: 48px;
+}
+.card-link {
+  display: inline-block; /* Дозволяє блокувати елементи вставлятися на одному рівні розмітки */
+  text-decoration: none;
+}
+.card-text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
