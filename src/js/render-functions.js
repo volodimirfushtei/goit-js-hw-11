@@ -5,7 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export function renderImages(images) {
   const imageContainer = document.getElementById('image-container');
-  const loader = document.querySelector('.loader');
+
   imageContainer.innerHTML = '';
   setTimeout(() => {
     if (images.length > 0) {
@@ -37,7 +37,7 @@ export function renderImages(images) {
       img.addEventListener('load', () => hideLoader(img));
       img.addEventListener('error', () => hideLoader(img));
     });
-  }, 1000);
+  }, 2000);
   function hideLoader(img) {
     const loader = img.parentElement.querySelector('.loader');
     if (loader) {
