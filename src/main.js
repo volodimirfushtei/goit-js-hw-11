@@ -20,9 +20,11 @@ function handleSearch(event) {
       })
       .catch(error => console.error('Error searching images:', error));
   } else {
-    console.log(
-      'Sorry, there are no images matching your search query. Please try again!'
-    );
+    iziToast.error({
+      position: 'topRight',
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+    });
   }
   formElement.reset();
 }

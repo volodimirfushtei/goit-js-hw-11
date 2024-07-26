@@ -81,6 +81,7 @@ button:hover {
   content: '';
   box-sizing: border-box;
   position: absolute;
+  z-index: 2;
   inset: 0px;
   border-radius: 50%;
   border: 5px solid #e80505;
