@@ -10,6 +10,7 @@
 }
 body {
   background-color: #1a1c1f;
+  font-family: var(--font-family);
 }
 form {
   display: flex;
