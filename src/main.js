@@ -40,7 +40,8 @@ function handleSearch(event) {
         } else {
           showToastWithIconAtEnd(
             'Sorry, there are no images matching your search query. Please try again!',
-            iconErr1
+            iconErr1,
+            3000
           );
         }
       })
@@ -48,7 +49,8 @@ function handleSearch(event) {
   } else {
     showToastWithIconAtEnd(
       'Sorry, there are no images matching your search query. Please try again!',
-      iconErr1
+      iconErr1,
+      3000
     );
   }
   formElement.reset();
