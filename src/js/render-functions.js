@@ -37,11 +37,12 @@ export function renderImages(images) {
       img.addEventListener('load', () => hideLoader(img));
       img.addEventListener('error', () => hideLoader(img));
     });
-  }, 2000);
-  function hideLoader(img) {
-    const loader = img.parentElement.querySelector('.loader');
-    if (loader) {
-      loader.style.display = 'none';
+
+    function hideLoader(img) {
+      const loader = img.parentElement.querySelector('.loader');
+      if (loader) {
+        loader.style.display = 'none';
+      }
     }
-  }
+  }, 2000);
 }

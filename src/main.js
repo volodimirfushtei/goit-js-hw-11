@@ -6,7 +6,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 import { fetchImages } from './js/pixabay-api.js';
 import { renderImages } from './js/render-functions.js';
-
+const formElement = document.querySelector('#search-form');
+formElement.addEventListener('submit', handleSearch);
 function showToastWithIconAtEnd(message, iconUrl, timeout = 3000) {
   iziToast.show({
     position: 'topRight',
@@ -21,8 +22,8 @@ function showToastWithIconAtEnd(message, iconUrl, timeout = 3000) {
     onOpening: function (instance, toast) {
       const iconElement = document.createElement('div');
       iconElement.className = 'custom-icon';
-      iconElement.style.backgroundImage = `url(${iconUrl})`; // Встановлюємо URL для іконки
-      toast.querySelector('.iziToast-message').appendChild(iconElement); // Додаємо іконку в кінець повідомлення
+      iconElement.style.backgroundImage = `url(${iconUrl})`;
+      toast.querySelector('.iziToast-message').appendChild(iconElement);
     },
   });
 }
@@ -39,8 +40,7 @@ function handleSearch(event) {
         } else {
           showToastWithIconAtEnd(
             'Sorry, there are no images matching your search query. Please try again!',
-            iconErr1,
-            3000
+            iconErr1
           );
         }
       })
@@ -48,11 +48,8 @@ function handleSearch(event) {
   } else {
     showToastWithIconAtEnd(
       'Sorry, there are no images matching your search query. Please try again!',
-      iconErr1,
-      3000
+      iconErr1
     );
   }
   formElement.reset();
 }
-const searchForm = document.querySelector('#search-form');
-searchForm.addEventListener('submit', handleSearch);

@@ -77,8 +77,7 @@ button:hover {
   border-radius: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin: 0 auto;
+  left: 45%;
   animation: rotate 1s linear infinite;
 }
 .loader::before {
@@ -87,7 +86,7 @@ button:hover {
   position: absolute;
   inset: 0px;
   border-radius: 50%;
-  border: 5px solid #e80505;
+  border: 5px solid #ed0505;
   animation: prixClipFix 2s linear infinite;
 }
 
@@ -161,7 +160,7 @@ button:hover {
   text-align: center;
   color: #ded1d1;
 }
-iziToast-custom .iziToast-icon {
+.iziToast-custom .iziToast-icon {
   display: none;
 }
 .iziToast-custom .iziToast-message {
