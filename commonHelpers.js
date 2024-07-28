@@ -2,9 +2,7 @@ import{S as u,i as h}from"./assets/vendor-5ObWk2rO.js";(function(){const o=docum
       <li class="gallery-link">
         <a class="card-link" href="${e.largeImageURL}" data-lightbox="gallery" data-title="${e.tags}">
           <div class="card">
-          
-            <img class="image" src="${e.webformatURL}" alt="${e.tags}">
-            
+            <img class="image" src="${e.webformatURL}" alt="${e.tags}" loading="lazy>
             <div class="card-points">
               <div class="card-text"><p>Likes: ${e.likes}</p></div>
               <div class="card-text"><p>Views: ${e.views}</p></div>
