@@ -10,7 +10,14 @@ export function fetchImages(query) {
   return fetch(`https://pixabay.com/api/?${params}`)
     .then(response => {
       if (!response.ok) {
-        throw new Error(response.status);
+        switch (response.status) {
+          case 404:
+            throw new Error('Images not found');
+          case 500:
+            throw new Error('Server error');
+          default:
+            throw new Error(`Error: ${response.status}`);
+        }
       }
       return response.json();
     })
