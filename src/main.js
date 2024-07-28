@@ -5,79 +5,90 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { fetchImages } from './js/pixabay-api.js';
 import { renderImages } from './js/render-functions.js';
+document.addEventListener('DOMContentLoaded', function () {
+  const formElement = document.querySelector('#search-form');
+  const loader = document.getElementById('loader');
 
-const loader = document.getElementById('loader');
-const formElement = document.querySelector('#search-form');
-formElement.addEventListener('submit', handleSearch);
+  formElement.addEventListener('submit', handleSearch);
 
-function showToastWithIconAtEnd(message, iconUrl, timeout = 3000) {
-  iziToast.show({
-    position: 'topRight',
-    message: message,
-    backgroundColor: '#EF4040',
-    messageColor: `#fff`,
-    messageSize: '16',
-    maxWidth: 432,
-    iconUrl: iconErr2,
-    timeout: timeout,
-    class: 'iziToast-custom',
-    onOpening: function (instance, toast) {
-      const iconElement = document.createElement('div');
-      iconElement.className = 'custom-icon';
-      iconElement.style.backgroundImage = `url(${iconUrl})`;
-      toast.querySelector('.iziToast-message').appendChild(iconElement);
-    },
-  });
-}
-
-function handleSearch(event) {
-  event.preventDefault();
-  const query = document.querySelector('#search-input').value.trim();
-
-  if (query) {
-    fetchImages(query)
-      .then(data => {
-        if (data.hits && data.hits.length > 0) {
-          renderImages(data.hits);
-        } else {
-          NoImagesFound();
-        }
-      })
-      .catch(error => {
-        console.error('Error searching images:', error);
-        showToastWithIconAtEnd(
-          'Error! No internet connection.',
-          iconErr1,
-          3000
-        );
-        clearGallery();
-      });
-  } else {
-    NoImagesFound();
+  function showToastWithIconAtEnd(message, iconUrl, timeout = 3000) {
+    iziToast.show({
+      position: 'topRight',
+      message: message,
+      backgroundColor: '#EF4040',
+      messageColor: `#fff`,
+      messageSize: '16',
+      maxWidth: 432,
+      iconUrl: iconErr2,
+      timeout: timeout,
+      class: 'iziToast-custom',
+      onOpening: function (instance, toast) {
+        const iconElement = document.createElement('div');
+        iconElement.className = 'custom-icon';
+        iconElement.style.backgroundImage = `url(${iconUrl})`;
+        toast.querySelector('.iziToast-message').appendChild(iconElement);
+      },
+    });
   }
 
-  formElement.reset();
-}
+  function handleSearch(event) {
+    event.preventDefault();
+    const query = document.querySelector('#search-input').value.trim();
 
-function NoImagesFound() {
-  showToastWithIconAtEnd(
-    'Sorry, there are no images matching your search query. Please try again!',
-    iconErr1,
-    3000
-  );
-  clearGallery();
-}
+    if (query) {
+      // Показуємо завантажувач
+      clearGallery(); // Очищаємо попередні результати
+      showLoader();
+      fetchImages(query)
+        .then(data => {
+          hideLoader(); // Сховуємо завантажувач
+          if (data.hits && data.hits.length > 0) {
+            renderImages(data.hits);
+          } else {
+            NoImagesFound();
+          }
+        })
+        .catch(error => {
+          hideLoader(); // Сховуємо завантажувач
+          console.error('Error searching images:', error);
+          showToastWithIconAtEnd(error.message, iconErr1, 3000);
+          clearGallery();
+        });
+    } else {
+      NoImagesFound();
+    }
 
-function clearGallery() {
-  const imageContainer = document.getElementById('image-container');
-  imageContainer.innerHTML = '';
-}
-function showLoader() {
-  loader.style.display = 'inline-block';
-}
-function hideLoader() {
-  const loader = document.querySelector('.loader');
-  if (loader) {
-    loader.remove();
+    formElement.reset(); // Очищаємо форму
   }
-}
+
+  function NoImagesFound() {
+    showToastWithIconAtEnd(
+      'Sorry, there are no images matching your search query. Please try again!',
+      iconErr1,
+      3000
+    );
+    clearGallery();
+  }
+
+  function clearGallery() {
+    const imageContainer = document.getElementById('image-container');
+    imageContainer.innerHTML = '';
+  }
+  function showLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('visible'); // Додаємо клас для відображення
+    } else {
+      console.error('Loader element not found');
+    }
+  }
+
+  function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.remove('visible'); // Видаляємо клас для приховування
+    } else {
+      console.error('Loader element not found');
+    }
+  }
+});

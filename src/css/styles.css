@@ -73,47 +73,32 @@ button:hover {
 }
 /* --------------create loader------------------ */
 .loader {
-  width: 44px;
-  height: 44px;
+  display: none;
+  border: 8px solid #f3f3f3; /* Сірий фон */
+  border-top: 8px solid #de1212; /* Синій верх */
   border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 45%;
-
-  animation: rotate 1s linear infinite;
-}
-.loader::before {
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  inset: 0px;
-
-  border-radius: 50%;
-  border: 5px solid #ed0505;
-  animation: prixClipFix 2s linear infinite;
+  width: 50px; /* Ширина */
+  height: 50px; /* Висота */
+  animation: spin 1s linear infinite; /* Анімація обертання */
+  position: absolute; /* Фіксована позиція */
+  top: 50%; /* Центр по вертикалі */
+  left: 48%; /* Центр по горизонталі */
+  transform: translate(-50%, -50%); /* Центрування */
+  z-index: 999; /* Перекриття інших елементів */
+  /* Сховуємо завантажувач за замовчуванням */
 }
 
-@keyframes rotate {
+.loader.visible {
+  display: inline-block; /* Відобразити при необхідності */
+}
+
+/* Анімація */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes prixClipFix {
-  0% {
-    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
-  }
-  25% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
-  }
-  50% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
-  }
-  75% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
-  }
-  100% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }
 
