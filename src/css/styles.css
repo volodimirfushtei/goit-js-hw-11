@@ -81,7 +81,7 @@ button:hover {
   height: 40px; /* Висота */
   animation: spin 1s linear infinite; /* Анімація обертання */
   position: absolute; /* Фіксована позиція */
-  top: 40%; /* Центр по вертикалі */
+  top: 20%; /* Центр по вертикалі */
   left: 48%; /* Центр по горизонталі */
   transform: translate(-50%, -50%); /* Центрування */
   z-index: 999; /* Перекриття інших елементів */
@@ -91,7 +91,7 @@ button:hover {
   content: '';
   box-sizing: border-box;
   position: absolute;
-  inset: 0px;
+  inset: 5px;
   z-index: 998;
   border-radius: 50%;
   border: 5px solid #ed0505;

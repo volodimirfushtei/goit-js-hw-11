@@ -15,10 +15,14 @@ export function fetchImages(query) {
       return response.json();
     })
     .catch(error => {
-      console.log(
-        'Sorry, there are no images matching your search query. Please try again!'
-      );
-      console.error('Error fetching images:', error);
+      if (error instanceof TypeError) {
+        // This might be a network-related error
+        console.error('Check your internet connection:', error.message);
+        alert('Internet connection lost.');
+      } else {
+        console.error('An error occurred:', error.message);
+        alert(error.message); // Provide specific error message
+      }
       return { hits: [] };
     });
 }

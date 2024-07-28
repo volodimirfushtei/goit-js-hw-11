@@ -14,7 +14,7 @@ export function renderImages(images) {
       <li class="gallery-link">
         <a class="card-link" href="${image.largeImageURL}" data-lightbox="gallery" data-title="${image.tags}">
           <div class="card">
-            <img class="image" src="${image.webformatURL}" alt="${image.tags}" loading="lazy>
+            <img class="image" src="${image.webformatURL}" alt="${image.tags}">
             <div class="card-points">
               <div class="card-text"><p>Likes: ${image.likes}</p></div>
               <div class="card-text"><p>Views: ${image.views}</p></div>
