@@ -79,6 +79,7 @@ button:hover {
   position: absolute;
   top: 50%;
   left: 45%;
+
   animation: rotate 1s linear infinite;
 }
 .loader::before {
@@ -86,6 +87,7 @@ button:hover {
   box-sizing: border-box;
   position: absolute;
   inset: 0px;
+
   border-radius: 50%;
   border: 5px solid #ed0505;
   animation: prixClipFix 2s linear infinite;
