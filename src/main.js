@@ -36,12 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const query = document.querySelector('#search-input').value.trim();
 
     if (query) {
-      // Показуємо завантажувач
-      clearGallery(); // Очищаємо попередні результати
+      clearGallery();
       showLoader();
       fetchImages(query)
         .then(data => {
-          hideLoader(); // Сховуємо завантажувач
+          hideLoader();
           if (data.hits && data.hits.length > 0) {
             renderImages(data.hits);
           } else {
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
         .catch(error => {
-          hideLoader(); // Сховуємо завантажувач
+          hideLoader();
           console.error('Error searching images:', error);
           showToastWithIconAtEnd(error.message, iconErr1, 3000);
           clearGallery();
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
       NoImagesFound();
     }
 
-    formElement.reset(); // Очищаємо форму
+    formElement.reset();
   }
 
   function NoImagesFound() {
@@ -77,18 +76,18 @@ document.addEventListener('DOMContentLoaded', function () {
   function showLoader() {
     const loader = document.getElementById('loader');
     if (loader) {
-      loader.classList.add('visible'); // Додаємо клас для відображення
+      loader.classList.add('visible');
     } else {
-      console.error('Loader element not found');
+      console.error('Loader not found');
     }
   }
 
   function hideLoader() {
     const loader = document.getElementById('loader');
     if (loader) {
-      loader.classList.remove('visible'); // Видаляємо клас для приховування
+      loader.classList.remove('visible');
     } else {
-      console.error('Loader element not found');
+      console.error('Loader not found');
     }
   }
 });

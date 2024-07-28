@@ -6,7 +6,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 export function renderImages(images) {
   const imageContainer = document.getElementById('image-container');
 
-  // Очистити контейнер перед оновленням
   imageContainer.innerHTML = '';
 
   if (images.length > 0) {
@@ -15,6 +14,7 @@ export function renderImages(images) {
       <li class="gallery-link">
         <a class="card-link" href="${image.largeImageURL}" data-lightbox="gallery" data-title="${image.tags}">
           <div class="card">
+          
             <img class="image" src="${image.webformatURL}" alt="${image.tags}">
             
             <div class="card-points">
@@ -32,6 +32,6 @@ export function renderImages(images) {
     const lightbox = new SimpleLightbox('[data-lightbox="gallery"]');
     lightbox.refresh();
   } else {
-    imageContainer.innerHTML = ''; // Повідомлення, якщо немає зображень
+    imageContainer.innerHTML = '';
   }
 }
