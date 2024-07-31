@@ -1,6 +1,6 @@
 'use strict';
 import iconErr2 from './img/bi_x-octagon.svg';
-import iconErr1 from './img/closebi_x-lg.svg';
+import iconErr1 from './img/bi_x-octagon.svg';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { fetchImages } from './js/pixabay-api.js';
